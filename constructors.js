@@ -14,6 +14,10 @@
 */
 
 // Code here
+function CarFactory(make, model) {
+  this.make = make
+  this.model = model
+}
 
 
 
@@ -32,7 +36,7 @@ function Employee(name, email, hireDate, salary) {
   Assign the result of the invocation to a variable called bob.
 */
 
-// Code here
+let bob = new Employee('Bob', 'bob@gmail.com', '01-02-98')
 
 
 
@@ -54,6 +58,15 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 */
 
 // Code here
+function Car(make, model, year) {
+  this.move = 0
+  this.make = make
+  this.model = model
+  this.year = year
+  this.moveCar = function() {
+    return this.move + 10
+  }
+}
 
 
 ////////// PROBLEM 4 ////////// 	
@@ -66,12 +79,17 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
   this.name = name;	
   this.genre = genre;	
   this.rating = rating;	
+
 }	
 
 
  // Code here	
 
+Movie.prototype.changeRating = function(newRating) {
+  let average = (newRating + this.rating)/2
+  return this.rating = average
 
+}
 
 
 ////////// PROBLEM 5 //////////	
@@ -83,7 +101,21 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 
 
  // Code here	
+ function User(name, age, email, savedPosts) {
+  this.name = name
+  this.age = age
+  this.email = email
+  this.savedPosts = savedPosts
+}
 
+User.prototype.addSavedPost = function (id, title, rating) {
+  let newPost = {
+    id,
+    title,
+    rating
+  }
+  this.savedPosts.push(newPost)
+}
 
 
 
@@ -96,7 +128,10 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 
 
  // Code here	
-
+User.prototype.removeSavedPost = function(id) {
+ let index = this.savedPosts.findIndex(post => post.id === id)
+ this.savedPosts.splice(index, 1)
+}
 
 
 
@@ -109,5 +144,8 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 
 
  // Code here
-
+User.prototype.changePostRating = function(id, newRating) {
+  let index = this.savedPosts.findIndex(post => post.id === id)
+  this.savedPosts[index].rating = newRating
+}
 
